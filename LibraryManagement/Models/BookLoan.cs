@@ -1,0 +1,54 @@
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace LibraryManagement.Models
+{
+    public enum LoanStatus
+    {
+        Active,
+        Returned,
+        Overdue,
+        Lost,
+        Renewed
+    }
+
+    public class BookLoan
+    {
+        [Key]
+        public int LoanId { get; set; }
+        
+        public DateTime IssueDate { get; set; } = DateTime.UtcNow;
+        
+        public DateTime DueDate { get; set; }
+        
+        public DateTime? ReturnDate { get; set; }
+        
+        public LoanStatus Status { get; set; } = LoanStatus.Active;
+        
+        [Range(0, int.MaxValue)]
+        public int RenewalCount { get; set; } = 0;
+        
+        [Range(0, 10)]
+        public int MaxRenewalsAllowed { get; set; } = 3;
+        
+        [StringLength(500)]
+        public string? Notes { get; set; }
+        
+        [Column(TypeName = "decimal(10,2)")]
+        public decimal? FineAmount { get; set; } = 0;
+        
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
+        
+        // Foreign Keys
+        public int BookId { get; set; }
+        public int MemberId { get; set; }
+        public int? ProcessedByLibrarianId { get; set; }
+        
+        // Navigation properties
+        public virtual Book Book { get; set; } = null!;
+        public virtual Member Member { get; set; } = null!;
+        public virtual Librarian? ProcessedByLibrarian { get; set; }
+        public virtual ICollection<Fine> Fines { get; set; } = new List<Fine>();
+    }
+}
