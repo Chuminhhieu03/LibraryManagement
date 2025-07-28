@@ -4,7 +4,7 @@ using LibraryManagement.Domain.Common;
 
 namespace LibraryManagement.Domain.Entities
 {
-    public class AssetMaintenanceLog : BaseAuditableEntity
+    public class AssetMaintenanceLog : BaseEntity
     {
         [Key]
         public int LogId { get; set; }

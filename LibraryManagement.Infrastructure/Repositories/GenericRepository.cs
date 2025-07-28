@@ -1,3 +1,7 @@
+using LibraryManagement.Domain.Interfaces;
+using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
+
 namespace LibraryManagement.Infrastructure.Repositories
 {
     public class GenericRepository<T> : IRepository<T> where T : class
@@ -26,6 +30,7 @@ namespace LibraryManagement.Infrastructure.Repositories
             }
 
             // Assume the entity has an Id property
+            // Assume for x => x.id = ${id}
             var parameter = Expression.Parameter(typeof(T), "x");
             var property = Expression.Property(parameter, "Id");
             var constant = Expression.Constant(id);
@@ -178,28 +183,6 @@ namespace LibraryManagement.Infrastructure.Repositories
         {
             _dbSet.RemoveRange(entities);
             return Task.CompletedTask;
-        }
-
-        public virtual async Task<int> BulkDeleteAsync(Expression<Func<T, bool>> predicate)
-        {
-            var entities = await _dbSet.Where(predicate).ToListAsync();
-            _dbSet.RemoveRange(entities);
-            return entities.Count;
-        }
-
-        public virtual async Task<int> BulkUpdateAsync(Expression<Func<T, bool>> predicate, Expression<Func<T, T>> updateExpression)
-        {
-            // Note: For better performance, consider using libraries like EF Core Bulk Extensions
-            var entities = await _dbSet.Where(predicate).ToListAsync();
-            var updateFunc = updateExpression.Compile();
-            
-            foreach (var entity in entities)
-            {
-                var updated = updateFunc(entity);
-                _context.Entry(entity).CurrentValues.SetValues(updated);
-            }
-            
-            return entities.Count;
         }
     }
 }

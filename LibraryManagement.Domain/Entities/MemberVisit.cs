@@ -5,7 +5,7 @@ using LibraryManagement.Domain.Enums;
 
 namespace LibraryManagement.Domain.Entities
 {
-    public class MemberVisit : BaseAuditableEntity
+    public class MemberVisit : BaseEntity
     {
         [Key]
         public int VisitId { get; set; }
@@ -18,14 +18,8 @@ namespace LibraryManagement.Domain.Entities
 
         public DateTime? CheckOutTime { get; set; }
 
-        public VisitPurpose Purpose { get; set; } = VisitPurpose.Reading;
-
         [StringLength(500)]
         public string? Notes { get; set; }
-
-        [StringLength(100)]
-        public string? AreaAccessed { get; set; }
-
         public bool IsActive { get; set; } = true;
 
         // Computed property for visit duration

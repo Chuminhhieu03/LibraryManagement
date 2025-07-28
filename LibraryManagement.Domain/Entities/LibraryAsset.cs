@@ -5,7 +5,7 @@ using LibraryManagement.Domain.Enums;
 
 namespace LibraryManagement.Domain.Entities
 {
-    public class LibraryAsset : BaseAuditableEntity
+    public class LibraryAsset : BaseEntity
     {
         [Key]
         public int AssetId { get; set; }

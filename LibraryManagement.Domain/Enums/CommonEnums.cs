@@ -29,7 +29,7 @@ namespace LibraryManagement.Domain.Enums
         Printer = 7,
         Projector = 8,
         AirConditioner = 9,
-        Lighting = 10
+        Light = 10
     }
 
     public enum AssetStatus

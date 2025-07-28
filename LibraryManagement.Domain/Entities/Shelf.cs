@@ -3,7 +3,7 @@ using LibraryManagement.Domain.Common;
 
 namespace LibraryManagement.Domain.Entities
 {
-    public class Shelf : BaseAuditableEntity
+    public class Shelf : BaseEntity
     {
         [Key]
         public int ShelfId { get; set; }

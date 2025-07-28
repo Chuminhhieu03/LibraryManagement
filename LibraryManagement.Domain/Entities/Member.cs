@@ -15,14 +15,11 @@ namespace LibraryManagement.Domain.Entities
     public enum MembershipType
     {
         Student,
-        Faculty,
         Staff,
-        General,
-        Senior,
         Premium
     }
 
-    public class Member : BaseAuditableEntity
+    public class Member : BaseEntity
     {
         [Key]
         public int MemberId { get; set; }
@@ -56,7 +53,7 @@ namespace LibraryManagement.Domain.Entities
         
         public DateTime? ExpiryDate { get; set; }
         
-        public MembershipType MembershipType { get; set; } = MembershipType.General;
+        //public MembershipType MembershipType { get; set; } = MembershipType.General;
         
         public MemberStatus Status { get; set; } = MemberStatus.Active;
         
