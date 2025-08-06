@@ -1,7 +1,7 @@
 using LibraryManagement.API.Extensions;
-using LibraryManagement.Middlewares;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using LibraryManagement.API.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 

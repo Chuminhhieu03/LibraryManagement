@@ -5,6 +5,21 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace LibraryManagement.Domain.Entities
 {
+    /// <summary>
+    /// Represents the various statuses of a loan in the library management system.
+    /// </summary>
+    /// <remarks>
+    /// This enumeration defines the possible states of a book loan from the moment it is issued
+    /// to the point it is returned or marked as lost. It helps in tracking and managing loans
+    /// effectively within the library.
+    /// </remarks>
+    /// <value>
+    /// - Active: Indicates the loan is currently active and the book has not yet been returned.
+    /// - Returned: Indicates the book associated with the loan has been returned by the borrower.
+    /// - Overdue: Indicates the loan is overdue and the scheduled return date has passed.
+    /// - Lost: Indicates the borrower has declared or the system has deemed the book as lost.
+    /// - Renewed: Indicates the loan has been renewed for an extended period.
+    /// </value>
     public enum LoanStatus
     {
         Active,
@@ -14,6 +29,9 @@ namespace LibraryManagement.Domain.Entities
         Renewed
     }
 
+    /// <summary>
+    /// Represents the loan of a book to a library member, including the details of the loan period, status, and related entities.
+    /// </summary>
     public class BookLoan : BaseEntity
     {
         [Key]

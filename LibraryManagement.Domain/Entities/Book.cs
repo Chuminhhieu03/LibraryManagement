@@ -4,6 +4,14 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace LibraryManagement.Domain.Entities
 {
+    /// <summary>
+    /// Represents the current status of a book in the library management system.
+    /// </summary>
+    /// <remarks>
+    /// The <see cref="BookStatus"/> enumeration defines various states a book can have,
+    /// including its availability, condition, or assignment status within the system.
+    /// It is utilized to track and manage the operational state of books.
+    /// </remarks>
     public enum BookStatus
     {
         Available,
@@ -14,6 +22,12 @@ namespace LibraryManagement.Domain.Entities
         UnderMaintenance
     }
 
+    /// <summary>
+    /// Represents a book in the library management system.
+    /// </summary>
+    /// <remarks>
+    /// This class is used to store and manage information about books, including their title, ISBN, publication details, status, physical location, and associated entities such as publishers, categories, and authors.
+    /// </remarks>
     public class Book : BaseEntity
     {
         [Key]

@@ -1,10 +1,11 @@
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using LibraryManagement.Domain.Common;
-using LibraryManagement.Domain.Enums;
 
 namespace LibraryManagement.Domain.Entities
 {
+    /// <summary>
+    /// Represents a library member's visit and its details.
+    /// </summary>
     public class MemberVisit : BaseEntity
     {
         [Key]

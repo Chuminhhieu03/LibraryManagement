@@ -4,6 +4,14 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace LibraryManagement.Domain.Entities
 {
+    /// <summary>
+    /// Represents the status of a fine in the library management system.
+    /// </summary>
+    /// <remarks>
+    /// This enum is used to indicate the current state of a fine, allowing the system
+    /// to track its resolution status. Typical states include pending, paid, waived,
+    /// and cancelled.
+    /// </remarks>
     public enum FineStatus
     {
         Pending,
@@ -12,6 +20,13 @@ namespace LibraryManagement.Domain.Entities
         Cancelled
     }
 
+    /// <summary>
+    /// Represents the type of a fine in the library management system.
+    /// </summary>
+    /// <remarks>
+    /// This enum classifies fines based on their reason, such as overdue books, lost items,
+    /// or other issues. It helps in categorizing and managing fines effectively within the system.
+    /// </remarks>
     public enum FineType
     {
         OverdueBook,
@@ -21,6 +36,14 @@ namespace LibraryManagement.Domain.Entities
         Other
     }
 
+    /// <summary>
+    /// Represents a fine imposed within the library management system.
+    /// </summary>
+    /// <remarks>
+    /// A fine is typically associated with a specific library member and optionally linked to a book loan.
+    /// Fines may be issued for various purposes, such as overdue books, lost or damaged books, and other policy violations.
+    /// Each fine includes information about its status, type, amount, and additional details.
+    /// </remarks>
     public class Fine : BaseEntity
     {
         [Key]

@@ -5,6 +5,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace LibraryManagement.Domain.Entities
 {
+    /// <summary>
+    /// Defines the roles available for a librarian within the library management system.
+    /// </summary>
+    /// <remarks>
+    /// This enumeration represents varying levels of responsibility and access within the system,
+    /// ranging from assisting roles to administrative authority.
+    /// </remarks>
     public enum LibrarianRole
     {
         Assistant,
@@ -14,6 +21,13 @@ namespace LibraryManagement.Domain.Entities
         Administrator
     }
 
+    /// <summary>
+    /// Represents a librarian within the library management system.
+    /// </summary>
+    /// <remarks>
+    /// A librarian manages library operations such as processing book loans, handling fines, and assisting library patrons.
+    /// This class stores the personal and professional details of a librarian, including their role, department, and salary.
+    /// </remarks>
     public class Librarian : BaseEntity
     {
         [Key]

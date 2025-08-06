@@ -1,5 +1,8 @@
 namespace LibraryManagement.Shared.DTOs.Books
 {
+    /// Represents a request DTO/model to create a new book in the library management system.
+    /// This class contains all necessary details about the book, such as its identification,
+    /// description, and associations with categories, publishers, and authors.
     public class CreateBookRequest
     {
         public string ISBN { get; set; } = string.Empty;

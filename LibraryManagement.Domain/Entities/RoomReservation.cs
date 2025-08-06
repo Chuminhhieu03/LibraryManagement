@@ -4,6 +4,13 @@ using LibraryManagement.Domain.Common;
 
 namespace LibraryManagement.Domain.Entities
 {
+    /// <summary>
+    /// Represents a reservation for a room in the library.
+    /// </summary>
+    /// <remarks>
+    /// This class tracks the details of a room reservation, including the reserved room, member details,
+    /// reservation time frame, status, and additional information such as purpose and special requirements.
+    /// </remarks>
     public class RoomReservation : BaseEntity
     {
         [Key]

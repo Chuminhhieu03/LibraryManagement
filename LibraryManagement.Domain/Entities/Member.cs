@@ -4,6 +4,16 @@ using LibraryManagement.Domain.Common;
 
 namespace LibraryManagement.Domain.Entities
 {
+    /// <summary>
+    /// Represents the status of a member within the library management system.
+    /// </summary>
+    /// <remarks>
+    /// The possible statuses are:
+    /// - Active: The member is in good standing and can access library services.
+    /// - Inactive: The member is temporarily not active.
+    /// - Suspended: The member is suspended due to policy violations or other reasons.
+    /// - Expired: The member's membership has expired and needs renewal.
+    /// </remarks>
     public enum MemberStatus
     {
         Active,
@@ -12,6 +22,15 @@ namespace LibraryManagement.Domain.Entities
         Expired
     }
 
+    /// <summary>
+    /// Represents the type of membership available within the library management system.
+    /// </summary>
+    /// <remarks>
+    /// The possible types include:
+    /// - Student: Membership designed for students with specific privileges.
+    /// - Staff: Membership for library or organizational staff users.
+    /// - Premium: Membership offering enhanced services and benefits.
+    /// </remarks>
     public enum MembershipType
     {
         Student,
@@ -19,6 +38,13 @@ namespace LibraryManagement.Domain.Entities
         Premium
     }
 
+    /// <summary>
+    /// Represents a library member within the library management system.
+    /// </summary>
+    /// <remarks>
+    /// This class contains essential details about a member, including personal
+    /// information, contact details, membership status, and associated library interactions.
+    /// </remarks>
     public class Member : BaseEntity
     {
         [Key]

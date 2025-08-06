@@ -3,6 +3,12 @@ using System.ComponentModel.DataAnnotations;
 
 namespace LibraryManagement.Domain.Entities
 {
+    /// <summary>
+    /// Represents an author entity in the library management domain.
+    /// </summary>
+    /// <remarks>
+    /// An author is associated with their respective books through the BookAuthors collection.
+    /// </remarks>
     public class Author : BaseEntity
     {
         [Key]

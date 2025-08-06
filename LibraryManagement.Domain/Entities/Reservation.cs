@@ -4,6 +4,13 @@ using System.ComponentModel.DataAnnotations;
 
 namespace LibraryManagement.Domain.Entities
 {
+    /// <summary>
+    /// Represents the various statuses a reservation can have within the system.
+    /// </summary>
+    /// <remarks>
+    /// This enumeration is used to indicate the current state of a reservation.
+    /// It applies to different types of reservations, such as book reservations or room reservations.
+    /// </remarks>
     public enum ReservationStatus
     {
         Active,
@@ -12,6 +19,13 @@ namespace LibraryManagement.Domain.Entities
         Expired
     }
 
+    /// <summary>
+    /// Represents a reservation made by a library member for a specific book.
+    /// </summary>
+    /// <remarks>
+    /// This class includes details about the reservation such as its status, related book and member,
+    /// as well as dates such as when the reservation was created, fulfilled, or when it expires.
+    /// </remarks>
     public class Reservation : BaseEntity
     {
         [Key]

@@ -8,17 +8,36 @@ using LibraryManagement.Application.Commands.Books;
 
 namespace LibraryManagement.Application.Handlers.Books
 {
+    /// <summary>
+    /// Handles the execution of the CreateBookCommand. Responsible for creating a new book record in the database,
+    /// mapping data, and returning a structured response.
+    /// </summary>
     public class CreateBookCommandHandler : IRequestHandler<CreateBookCommand, ApiResponse<BookResponse>>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CreateBookCommandHandler"/> class.
+        /// </summary>
+        /// <param name="unitOfWork">The unit of work instance for managing database transactions and repositories.</param>
+        /// <param name="mapper">The AutoMapper instance for object-to-object mapping.</param>
         public CreateBookCommandHandler(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
 
+        /// <summary>
+        /// Handles the execution of a command to create a new book, including persisting the book and its associated authors
+        /// to the database. Returns a response indicating the result of the operation.
+        /// </summary>
+        /// <param name="command">The command containing the details of the book to be created.</param>
+        /// <param name="cancellationToken">A cancellation token for cancelling the operation, if needed.</param>
+        /// <return>
+        /// An <see cref="ApiResponse{T}" /> containing a <see cref="BookResponse" /> object with details of the created book,
+        /// and a success message if the operation is completed successfully.
+        /// </return>
         public async Task<ApiResponse<BookResponse>> Handle(CreateBookCommand command, CancellationToken cancellationToken)
         {
             try

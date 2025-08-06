@@ -4,6 +4,13 @@ using System.ComponentModel.DataAnnotations;
 
 namespace LibraryManagement.Domain.Entities
 {
+    /// <summary>
+    /// Represents a category within the library management system.
+    /// </summary>
+    /// <remarks>
+    /// A Category entity is used to group books with similar themes, topics, or characteristics.
+    /// It contains details like the category name, description, and the collection of books that belong to the category.
+    /// </remarks>
     public class Category : BaseEntity
     {
         [Key]

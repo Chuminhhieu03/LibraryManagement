@@ -4,6 +4,14 @@ using LibraryManagement.Domain.Common;
 
 namespace LibraryManagement.Domain.Entities
 {
+    /// <summary>
+    /// Represents a log entry for the maintenance of a library asset.
+    /// </summary>
+    /// <remarks>
+    /// This class is used to store information about the maintenance activities
+    /// performed on a specific library asset, including details such as the type of maintenance,
+    /// costs incurred, and the next scheduled maintenance date.
+    /// </remarks>
     public class AssetMaintenanceLog : BaseEntity
     {
         [Key]

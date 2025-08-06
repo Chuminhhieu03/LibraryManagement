@@ -1,11 +1,14 @@
+using LibraryManagement.Application.Commands.Books;
+using LibraryManagement.Shared.DTOs.Books;
+using LibraryManagement.Shared.DTOs.Common;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using LibraryManagement.Shared.DTOs.Common;
-using LibraryManagement.Shared.DTOs.Books;
-using LibraryManagement.Application.Commands.Books;
 
-namespace LibraryManagement.Controllers
+namespace LibraryManagement.API.Controllers
 {
+    /// <summary>
+    /// Controller responsible for handling operations related to books.
+    /// </summary>
     [ApiController]
     [Route("api/[controller]")]
     public class BooksController : ControllerBase
@@ -13,6 +16,9 @@ namespace LibraryManagement.Controllers
         private readonly IMediator _mediator;
         private readonly ILogger<BooksController> _logger;
 
+        /// <summary>
+        /// Controller responsible for handling operations related to books.
+        /// </summary>
         public BooksController(IMediator mediator, ILogger<BooksController> logger)
         {
             _mediator = mediator;

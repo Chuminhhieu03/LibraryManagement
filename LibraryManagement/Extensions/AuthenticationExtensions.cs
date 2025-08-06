@@ -4,8 +4,18 @@ using System.Text;
 
 namespace LibraryManagement.API.Extensions
 {
+    /// <summary>
+    /// Provides extension methods for configuring authentication services.
+    /// </summary>
     public static class AuthenticationExtensions
     {
+        /// <summary>
+        /// Configures JWT authentication for the application.
+        /// </summary>
+        /// <param name="services">The IServiceCollection to which the authentication services will be added.</param>
+        /// <param name="configuration">The application's configuration, used to retrieve JWT settings.</param>
+        /// <returns>The IServiceCollection with JWT authentication configured.</returns>
+        /// <exception cref="InvalidOperationException">Thrown when the JWT SecretKey is not configured.</exception>
         public static IServiceCollection AddJwtAuthentication(this IServiceCollection services, IConfiguration configuration)
         {
             var jwtSettings = configuration.GetSection("JwtSettings");

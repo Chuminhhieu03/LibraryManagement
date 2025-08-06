@@ -6,6 +6,16 @@ using Microsoft.AspNetCore.Http;
 
 namespace LibraryManagement.Infrastructure.Data
 {
+    /// <summary>
+    /// Represents the database context for the Library Management System, providing an abstraction
+    /// for interacting with the underlying database.
+    /// </summary>
+    /// <remarks>
+    /// This class is derived from DbContext and is used with Entity Framework Core for database operations.
+    /// It contains DbSet properties for all the entities in the Library Management System.
+    /// Provides additional features such as tracking changes, saving changes asynchronously,
+    /// and applying configurations during model creation.
+    /// </remarks>
     public class LibraryDbContext : DbContext
     {
         private readonly IHttpContextAccessor _httpContextAccessor;
@@ -34,6 +44,12 @@ namespace LibraryManagement.Infrastructure.Data
         public DbSet<AssetMaintenanceLog> AssetMaintenanceLogs { get; set; }
         public DbSet<Notification> Notifications { get; set; }
 
+        /// <summary>
+        /// Asynchronously saves all changes made in this context to the underlying database.
+        /// It also updates audit information such as created and updated timestamps and user identifiers based on the current context.
+        /// </summary>
+        /// <param name="cancellationToken">A <see cref="CancellationToken"/> that can be used to cancel the save operation.</param>
+        /// <returns>A task that represents the asynchronous save operation. The task result contains the number of state entries written to the database.</returns>
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
             var userId = _httpContextAccessor.HttpContext?.User?.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "System";
@@ -57,6 +73,11 @@ namespace LibraryManagement.Infrastructure.Data
             return await base.SaveChangesAsync(cancellationToken);
         }
 
+        /// <summary>
+        /// Configures the model for the database context, including relationships, constraints, indexes,
+        /// data precision, and initial seed data for entities within the context.
+        /// </summary>
+        /// <param name="modelBuilder">The builder used to define the model for the database context.</param>
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -79,6 +100,12 @@ namespace LibraryManagement.Infrastructure.Data
             SeedData(modelBuilder);
         }
 
+        /// <summary>
+        /// Configures the relationships for the Book entity and its associated entities in the data model.
+        /// Defines many-to-many relationships for Book and Author entities using the intermediate BookAuthor entity.
+        /// Additionally, configures one-to-many relationships for the Book entity with Category and Publisher entities.
+        /// </summary>
+        /// <param name="modelBuilder">The <see cref="ModelBuilder"/> used to configure entity relationships in the database model.</param>
         private void ConfigureBookRelationships(ModelBuilder modelBuilder)
         {
             // BookAuthor many-to-many relationship
@@ -111,6 +138,11 @@ namespace LibraryManagement.Infrastructure.Data
                 .OnDelete(DeleteBehavior.Restrict);
         }
 
+        /// <summary>
+        /// Configures the relationships for the Member entity with related entities such as BookLoan, Fine, and Reservation.
+        /// This includes defining foreign key constraints, navigation properties, and delete behaviors to maintain database integrity.
+        /// </summary>
+        /// <param name="modelBuilder">An instance of <see cref="ModelBuilder"/> used to configure the relationships between entities.</param>
         private void ConfigureMemberRelationships(ModelBuilder modelBuilder)
         {
             // BookLoan relationships
@@ -169,6 +201,10 @@ namespace LibraryManagement.Infrastructure.Data
         }
 
         // THIẾU PHẦN NÀY - Configure relationships cho các entity mới
+        /// <summary>
+        /// Configures the relationships for new entities in the database model, ensuring proper relationships between entities such as constraints, foreign keys, and cascading behaviors.
+        /// </summary>
+        /// <param name="modelBuilder">An instance of <see cref="ModelBuilder"/> used to configure the entity relationships, conventions, and behaviors.</param>
         private void ConfigureNewEntityRelationships(ModelBuilder modelBuilder)
         {
             // MemberVisit relationships
@@ -226,6 +262,12 @@ namespace LibraryManagement.Infrastructure.Data
             //     .OnDelete(DeleteBehavior.SetNull);
         }
 
+        /// <summary>
+        /// Configures database indexes and constraints for entities in the library management system.
+        /// This includes setting up unique constraints, composite indexes, and performance-related indexes
+        /// to optimize database queries and enforce data integrity.
+        /// </summary>
+        /// <param name="modelBuilder">An instance of <see cref="ModelBuilder"/> used to configure entity relationships, indexes, and constraints.</param>
         private void ConfigureIndexesAndConstraints(ModelBuilder modelBuilder)
         {
             // Existing unique constraints
@@ -279,6 +321,11 @@ namespace LibraryManagement.Infrastructure.Data
                 .HasIndex(n => new { n.MemberId, n.IsRead, n.CreatedAt });
         }
 
+        /// <summary>
+        /// Configures the precision and scale for decimal properties within the entity models.
+        /// This ensures consistent decimal representation in the database for properties requiring specific precision.
+        /// </summary>
+        /// <param name="modelBuilder">The <see cref="ModelBuilder"/> used to configure entity models.</param>
         private void ConfigureDecimalPrecision(ModelBuilder modelBuilder)
         {
             // Existing decimal configurations
@@ -316,6 +363,11 @@ namespace LibraryManagement.Infrastructure.Data
                 .HasPrecision(10, 2);
         }
 
+        /// <summary>
+        /// Seeds initial data into the database for ensuring required entities and their values are present.
+        /// Typically, this method is used to insert datasets that the application depends on.
+        /// </summary>
+        /// <param name="modelBuilder">An instance of <see cref="ModelBuilder"/> that provides APIs to customize the behavior of the model for database creation.</param>
         private void SeedData(ModelBuilder modelBuilder)
         {
             // Existing seed data

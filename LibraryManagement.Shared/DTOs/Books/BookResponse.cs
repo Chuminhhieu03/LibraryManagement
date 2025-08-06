@@ -1,5 +1,10 @@
 namespace LibraryManagement.Shared.DTOs.Books
 {
+    /// <summary>
+    /// Represents the response DTO/model for book details in the application.
+    /// This class is used to encapsulate relevant book information that is sent as a part
+    /// of API responses or query results.
+    /// </summary>
     public class BookResponse
     {
         public int BookId { get; set; }

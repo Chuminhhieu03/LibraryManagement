@@ -5,6 +5,17 @@ using LibraryManagement.Domain.Enums;
 
 namespace LibraryManagement.Domain.Entities
 {
+    /// <summary>
+    /// Represents a library asset within the system, including its details
+    /// such as name, type, status, location, and other attributes related
+    /// to its management.
+    /// </summary>
+    /// <remarks>
+    /// The <see cref="LibraryAsset"/> class is used to track and manage
+    /// assets in a library environment. Assets can be associated with
+    /// shelves, maintenance logs, and notifications. It provides
+    /// metadata for identification, purchase details, maintenance, and status.
+    /// </remarks>
     public class LibraryAsset : BaseEntity
     {
         [Key]

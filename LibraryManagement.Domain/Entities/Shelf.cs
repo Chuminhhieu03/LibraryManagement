@@ -3,6 +3,9 @@ using LibraryManagement.Domain.Common;
 
 namespace LibraryManagement.Domain.Entities
 {
+    /// <summary>
+    /// Represents a storage unit or shelf in the library system that holds various assets or books.
+    /// </summary>
     public class Shelf : BaseEntity
     {
         [Key]

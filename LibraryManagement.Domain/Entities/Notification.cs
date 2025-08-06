@@ -1,10 +1,12 @@
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using LibraryManagement.Domain.Common;
 using LibraryManagement.Domain.Enums;
 
 namespace LibraryManagement.Domain.Entities
 {
+    /// <summary>
+    /// Represents a notification entity within the Library Management System.
+    /// </summary>
     public class Notification : BaseEntity
     {
         [Key]

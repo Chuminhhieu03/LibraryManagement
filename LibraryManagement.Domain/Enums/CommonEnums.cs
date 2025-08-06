@@ -1,5 +1,12 @@
 namespace LibraryManagement.Domain.Enums
 {
+    /// <summary>
+    /// Enumerates the types of notifications within the Library Management System.
+    /// </summary>
+    /// <remarks>
+    /// The NotificationType enum identifies various types of notifications that can
+    /// be sent to library members or administrators.
+    /// </remarks>
     public enum NotificationType
     {
         BookOverdue = 1,
@@ -18,6 +25,13 @@ namespace LibraryManagement.Domain.Enums
         AssetMaintenanceScheduled = 14
     }
 
+    /// <summary>
+    /// Enumerates the various types of assets managed within the Library Management System.
+    /// </summary>
+    /// <remarks>
+    /// The AssetType enum classifies the physical and digital assets available in the library,
+    /// such as furniture, electronic devices, and equipment.
+    /// </remarks>
     public enum AssetType
     {
         Furniture = 1,
@@ -32,6 +46,13 @@ namespace LibraryManagement.Domain.Enums
         Light = 10
     }
 
+    /// <summary>
+    /// Represents the possible statuses of an asset within the library system.
+    /// </summary>
+    /// <remarks>
+    /// The AssetStatus enum specifies the current state of an asset, offering a way to track
+    /// its availability, usage condition, and operational state within the library system.
+    /// </remarks>
     public enum AssetStatus
     {
         Available = 1,
@@ -42,6 +63,13 @@ namespace LibraryManagement.Domain.Enums
         Reserved = 6
     }
 
+    /// <summary>
+    /// Represents the types of rooms available in the library system.
+    /// </summary>
+    /// <remarks>
+    /// The RoomType enum is used to categorize different types of rooms
+    /// that can be managed and utilized within the library infrastructure.
+    /// </remarks>
     public enum RoomType
     {
         StudyRoom = 1,
@@ -54,6 +82,13 @@ namespace LibraryManagement.Domain.Enums
         PrivateRoom = 8
     }
 
+    /// <summary>
+    /// Defines the possible statuses for rooms within the Library Management System.
+    /// </summary>
+    /// <remarks>
+    /// The RoomStatus enum is used to represent the current status of a room,
+    /// providing information regarding its availability, usage, and condition.
+    /// </remarks>
     public enum RoomStatus
     {
         Available = 1,
@@ -63,6 +98,13 @@ namespace LibraryManagement.Domain.Enums
         Closed = 5
     }
 
+    /// <summary>
+    /// Represents the various statuses a reservation can have within the Library Management System.
+    /// </summary>
+    /// <remarks>
+    /// The ReservationStatus enum identifies the lifecycle states that a reservation, such as
+    /// a room or book reservation, may go through during the process of booking and usage.
+    /// </remarks>
     public enum ReservationStatus
     {
         Pending = 1,
@@ -73,6 +115,14 @@ namespace LibraryManagement.Domain.Enums
         NoShow = 6
     }
 
+    /// <summary>
+    /// Enumerates the purposes for visiting the library within the Library Management System.
+    /// </summary>
+    /// <remarks>
+    /// The VisitPurpose enum is used to categorize and identify the primary reason for a user's visit
+    /// to the library facilities. This information can help in better resource allocation and
+    /// understanding visitor trends.
+    /// </remarks>
     public enum VisitPurpose
     {
         Reading = 1,

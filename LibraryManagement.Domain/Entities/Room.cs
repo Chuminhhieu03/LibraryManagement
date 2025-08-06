@@ -1,10 +1,12 @@
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using LibraryManagement.Domain.Common;
 using LibraryManagement.Domain.Enums;
 
 namespace LibraryManagement.Domain.Entities
 {
+    /// <summary>
+    /// Represents a room that can be reserved or utilized in the library system.
+    /// </summary>
     public class Room : BaseEntity
     {
         [Key]

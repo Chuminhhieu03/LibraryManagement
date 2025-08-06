@@ -1,18 +1,34 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Logging;
+﻿using System.Net;
 using System.Text.Json;
-using System.Net;
 using FluentValidation;
 using LibraryManagement.Shared.DTOs.Common;
 
-namespace LibraryManagement.Middlewares
+namespace LibraryManagement.API.Middlewares
 {
+    /// <summary>
+    /// Middleware that handles exceptions occurring during the HTTP request pipeline execution.
+    /// </summary>
+    /// <remarks>
+    /// This middleware intercepts unhandled exceptions occurring within the application, logs them,
+    /// and generates a response to provide meaningful information to the client about the issue.
+    /// Additionally, it differentiates behavior based on the application's environment (e.g., development).
+    /// </remarks>
+    /// <exception cref="Exception">
+    /// Represents any unhandled error that occurs while processing an HTTP request.
+    /// </exception>
     public class ExceptionMiddleware
     {
         private readonly RequestDelegate _next;
         private readonly ILogger<ExceptionMiddleware> _logger;
         private readonly IWebHostEnvironment _environment;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ExceptionMiddleware"/> class.
+        /// </summary>
+        /// <param name="next">The next middleware delegate in the request pipeline.</param>
+        /// <param name="logger">The logger instance for recording exception details.</param>
+        /// <param name="environment">The web hosting environment information provider.</param>
+        /// <exception cref="ArgumentNullException">Thrown when any of the required parameters is null.</exception>
         public ExceptionMiddleware(RequestDelegate next, ILogger<ExceptionMiddleware> logger, IWebHostEnvironment environment)
         {
             _next = next;
@@ -20,6 +36,9 @@ namespace LibraryManagement.Middlewares
             _environment = environment;
         }
 
+        /// Handles an incoming HTTP request and processes any exceptions that occur during the request pipeline execution.
+        /// <param name="context">The HTTP context for the current request.</param>
+        /// <returns>A task that represents the asynchronous operation for handling the middleware pipeline.</returns>
         public async Task InvokeAsync(HttpContext context)
         {
             try
@@ -33,6 +52,11 @@ namespace LibraryManagement.Middlewares
             }
         }
 
+        /// Processes exceptions that occur during the HTTP request pipeline and writes the appropriate response to the context.
+        /// <param name="context">The HTTP context for the current request.</param>
+        /// <param name="exception">The exception that occurred during request processing.</param>
+        /// <param name="isDevelopment">Indicates whether the application is running in a development environment.</param>
+        /// <returns>A task that represents the asynchronous operation of handling the exception and generating the response.</returns>
         private static async Task HandleExceptionAsync(HttpContext context, Exception exception, bool isDevelopment)
         {
             if (context.Response.HasStarted)
@@ -123,6 +147,7 @@ namespace LibraryManagement.Middlewares
                     {
                         response.Errors = new List<string> { "An unexpected error occurred. Please contact support if the problem persists." };
                     }
+
                     break;
             }
 
@@ -140,10 +165,22 @@ namespace LibraryManagement.Middlewares
     }
 
     // Custom Exceptions
+    /// <summary>
+    /// Represents errors that occur during the execution of business logic within the application.
+    /// </summary>
+    /// <remarks>
+    /// This exception is specifically designed to handle business logic errors that deviate from
+    /// expected application operation. It can be used to provide meaningful messages to the user
+    /// or application logs while maintaining clear separation of concerns for exception handling.
+    /// </remarks>
     public class BusinessLogicException : Exception
     {
-        public BusinessLogicException(string message) : base(message) { }
-        public BusinessLogicException(string message, Exception innerException) : base(message, innerException) { }
-    }
+        public BusinessLogicException(string message) : base(message)
+        {
+        }
 
+        public BusinessLogicException(string message, Exception innerException) : base(message, innerException)
+        {
+        }
+    }
 }
